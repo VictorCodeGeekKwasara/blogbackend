@@ -31,16 +31,3 @@ app.get('/', (req, res) => {
 app.use(authRoutes);
 app.use(commentsRoutes);
 app.use(likesRoutes);
-
-app.get('/set-cookies', (req, res) => {
-	res.setHeader('set-cookie', 'newUser=true');
-	res.cookie('newU', false);
-
-	res.send('you got the cookies!');
-});
-
-app.get('/read-cookies', (req, res) => {
-	const cookies = req.cookies;
-	console.log(cookies.newU, cookies.newUser);
-	res.json(cookies);
-});

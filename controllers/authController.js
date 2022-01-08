@@ -5,7 +5,6 @@ require('dotenv').config();
 // handle errors
 
 const handleErrors = (err) => {
-	console.log(err.message, err.code);
 	let errors = { name: '', email: '', password: '' };
 
 	// login errors
@@ -19,7 +18,6 @@ const handleErrors = (err) => {
 
 	// duplicate error code
 	if (err.code === 11000) {
-		console.log(err.keyPattern);
 		const nmerr = 'name' in err.keyPattern;
 		const emerr = 'email' in err.keyPattern;
 		emerr && (errors.email = 'that email is already registered');
@@ -64,7 +62,6 @@ module.exports.signup_post = async (req, res) => {
 };
 module.exports.login_post = async (req, res) => {
 	const { email, password } = req.body;
-	console.log(email, password);
 
 	try {
 		const user = await User.login(email, password);
@@ -72,7 +69,6 @@ module.exports.login_post = async (req, res) => {
 		res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 		res.status(200).json({ user: user._id });
 	} catch (err) {
-		console.log(err);
 		const errors = handleErrors(err);
 		res.status(400).json({ errors });
 	}
