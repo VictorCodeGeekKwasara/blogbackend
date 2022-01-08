@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { requireAuth } = require('../middleware/authMiddleware');
 
 const {
 	comments_post,
@@ -7,7 +8,7 @@ const {
 
 const router = Router();
 
-router.post('/comments', comments_post);
+router.post('/comments', requireAuth, comments_post);
 router.get('/comments/:id', comments_get);
 
 module.exports = router;

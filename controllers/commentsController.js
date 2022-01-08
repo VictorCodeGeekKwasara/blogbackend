@@ -1,8 +1,6 @@
 const Comment = require('../models/Comment');
 
 module.exports.comments_post = async (req, res) => {
-	console.log(req.body);
-
 	const comment_id = req.body.comment_id || undefined;
 	const date = req.body.comment_id || undefined;
 
@@ -19,7 +17,6 @@ module.exports.comments_post = async (req, res) => {
 		});
 		res.status(201).json(comment);
 	} catch (err) {
-		console.log(err);
 		res.status(400).send(err);
 	}
 };
