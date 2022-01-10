@@ -12,7 +12,7 @@ const handleErrors = (err) => {
 	if (err.message === 'incorrect password') {
 		errors.password = 'Incorrect password please try again';
 	}
-	if (err.message === 'inorrect email') {
+	if (err.message === 'incorrect email') {
 		errors.email = 'Inorrect email please try again';
 	}
 
